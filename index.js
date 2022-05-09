@@ -4,6 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 var cors = require('cors')
 const Poi = require('./models/Poi')
+const Carros = require('./models/Carros')
 
 
 app.use(
@@ -20,13 +21,23 @@ app.use(express.json())
 
 app.get('/poi', async (req, res) => {
     try {
-      const people = await Poi.find()
+      const poi = await Poi.find()
   
-      res.status(200).json(people)
+      res.status(200).json(poi)
     } catch (error) {
       res.status(500).json({ erro: error })
     }
-  })
+})
+
+app.get('/teste', async (req, res) => {
+  try {
+    const carros = await Carros.find()
+
+    res.status(200).json(carros)
+  } catch (error) {
+    res.status(500).json({ erro: error })
+  }
+})
 
 mongoose.connect('mongodb+srv://marcelodolacio:UaRPlbG1iYxZ2xEd@cluster0.6ufeh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 .then(()=>{
