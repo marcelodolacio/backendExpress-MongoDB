@@ -2,8 +2,9 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-
+var cors = require('cors')
 const Poi = require('./models/Poi')
+
 
 app.use(
     express.urlencoded({
@@ -11,6 +12,10 @@ app.use(
     }),
   )
   
+
+app.use(cors()) //Essa linha aqui
+
+
 app.use(express.json())
 
 app.get('/poi', async (req, res) => {
