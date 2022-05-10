@@ -6,19 +6,16 @@ var cors = require('cors')
 const Poi = require('./models/Poi')
 const Carros = require('./models/Carros')
 
-
+//RESNPOSAVEL POR FAZER A CONFIGURACAO INICIAL DO EXPRESS
 app.use(
     express.urlencoded({
       extended: true,
     }),
   )
-  
-
-app.use(cors()) //Essa linha aqui
-
-
+app.use(cors()) 
 app.use(express.json())
 
+//RESPONSAVEL POR FAZER CHAMADA PRA RECUPERAR LISTA DE POI'S
 app.get('/poi', async (req, res) => {
     try {
       const poi = await Poi.find()
@@ -29,7 +26,8 @@ app.get('/poi', async (req, res) => {
     }
 })
 
-app.get('/teste', async (req, res) => {
+//RESPONSAVEL POR FAZER CHAMADA PRA RECUPERAR CARROS
+app.get('/carros', async (req, res) => {
   try {
     const carros = await Carros.find()
 
@@ -39,6 +37,7 @@ app.get('/teste', async (req, res) => {
   }
 })
 
+//RESPONSAVEL POR FAZER CONEXAO COM MONGODB
 mongoose.connect('mongodb+srv://marcelodolacio:UaRPlbG1iYxZ2xEd@cluster0.6ufeh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 .then(()=>{
     console.log('Deu certo a conexao com o DB!')
